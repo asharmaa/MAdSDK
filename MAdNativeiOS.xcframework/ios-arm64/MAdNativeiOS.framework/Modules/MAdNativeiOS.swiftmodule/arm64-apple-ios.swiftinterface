@@ -1,0 +1,402 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.6 (swiftlang-5.6.0.323.62 clang-1316.0.20.8)
+// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name MAdNativeiOS
+import AdSupport
+import AppTrackingTransparency
+import CoreGraphics
+import CoreLocation
+import CoreTelephony
+import Foundation
+import OMSDK_Appnexus
+import Swift
+import SystemConfiguration
+import UIKit
+import WebKit
+import _Concurrency
+@objc public protocol NativeAdResponseDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func adWillExpire(_ response: Any)
+  @objc func adDidExpire(_ response: Any)
+  @objc func adWasClicked(_ response: Any)
+  @objc func adWasClicked(_ response: Any, withURL clickURLString: Swift.String, fallbackURL clickFallbackURLString: Swift.String)
+  @objc func adWillPresent(_ response: Any)
+  @objc func adDidPresent(_ response: Any)
+  @objc func adWillClose(_ response: Any)
+  @objc func adDidClose(_ response: Any)
+  @objc func adWillLeaveApplication(_ response: Any)
+  @objc func adDidLogImpression(_ response: Any)
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class NativeStandardAdResponse : MAdNativeiOS.NativeAdResponse {
+  @objc override public func unregisterViewFromTracking()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class AdInit : ObjectiveC.NSObject {
+  @objc public class func sharedInstance() -> MAdNativeiOS.AdInit
+  @objc public func initWithMemberID(memberId: Swift.Int, preCacheRequestObjects: Swift.Bool, completionHandler: ((Swift.Bool) -> Swift.Void)?)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class USPrivacySettings {
+  public class func setUSPrivacyString(_ privacyString: Swift.String)
+  public class func reset()
+  public class func getUSPrivacyString() -> Swift.String
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class XandrView : UIKit.UIView {
+  @objc deinit
+}
+@objc public enum UserIdSource : Swift.Int, Swift.RawRepresentable {
+  case Criteo
+  case UID2
+  case NetId
+  case LiveRamp
+  case TheTradeDesk
+  public typealias RawValue = Swift.String
+  public var rawValue: MAdNativeiOS.UserIdSource.RawValue {
+    get
+  }
+  public init?(rawValue: MAdNativeiOS.UserIdSource.RawValue)
+}
+@_hasMissingDesignatedInitializers @objc public class UserId : ObjectiveC.NSObject {
+  public var source: Swift.String?
+  public var userId: Swift.String?
+  public var isFirstParytId: Swift.Bool
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class XandrViewController : UIKit.UIViewController {
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class XandrImage : UIKit.UIImage {
+  @objc override dynamic public init?(contentsOfFile path: Swift.String)
+  @objc override dynamic public init?(data: Foundation.Data)
+  @available(iOS 6.0, *)
+  @objc override dynamic public init?(data: Foundation.Data, scale: CoreGraphics.CGFloat)
+  @objc override dynamic public init(cgImage: CoreGraphics.CGImage)
+  @available(iOS 4.0, *)
+  @objc override dynamic public init(cgImage: CoreGraphics.CGImage, scale: CoreGraphics.CGFloat, orientation: UIKit.UIImage.Orientation)
+  @available(iOS 5.0, *)
+  @objc override dynamic public init(ciImage: CoreImage.CIImage)
+  @available(iOS 6.0, *)
+  @objc override dynamic public init(ciImage: CoreImage.CIImage, scale: CoreGraphics.CGFloat, orientation: UIKit.UIImage.Orientation)
+  @objc override dynamic public init()
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers public class NativeAdStarRating : ObjectiveC.NSObject {
+  public var value: Swift.Float
+  public var scale: Swift.Int
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class GDPRSettings : ObjectiveC.NSObject {
+  public static func setConsentString(_ consentString: Swift.String)
+  public static func setConsentRequired(_ consentRequired: Foundation.NSNumber)
+  public static func getConsentString() -> Swift.String?
+  public static func getConsentRequired() -> Foundation.NSNumber?
+  public static func getGoogleACMConsentArray() -> [Swift.AnyHashable]
+  public static func setPurposeConsents(_ purposeConsents: Swift.String)
+  public static func getDeviceAccessConsent() -> Swift.String?
+  @objc public static func canAccessDeviceData() -> Swift.Bool
+  public static func reset()
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class BaseUrlConfig : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc deinit
+}
+public typealias sdkInitCompletion = (Swift.Bool) -> Swift.Void
+@_inheritsConvenienceInitializers @objc public class SDKSettings : ObjectiveC.NSObject {
+  @objc public class func sharedInstance() -> MAdNativeiOS.SDKSettings
+  @objc public var enableOMIDOptimization: Swift.Bool
+  @objc public var enableOpenMeasurement: Swift.Bool
+  @objc public var customUserAgent: Swift.String?
+  @objc public func sdkVersion() -> Swift.String
+  @objc public var disableIDFAUsage: Swift.Bool
+  @objc public var disableIDFVUsage: Swift.Bool
+  @objc public var enableTestMode: Swift.Bool
+  @objc public var sdkBrowserDismissTitle: Swift.String?
+  @objc public var userIdArray: [MAdNativeiOS.UserId]?
+  @objc public func baseUrlConfig() -> MAdNativeiOS.BaseUrlConfig
+  @objc public func setNativeAdAboutToExpireInterval(_ nativeAdAboutToExpireInterval: Swift.Int)
+  @objc override dynamic public init()
+  @objc deinit
+}
+public typealias ViewRegisterCompletionHandler = (_ success: Swift.Bool, _ error: Swift.Error?) -> Swift.Void
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class NativeAdResponse : ObjectiveC.NSObject {
+  @objc public var title: Swift.String
+  @objc public var body: Swift.String
+  @objc public var callToAction: Swift.String
+  @objc public var rating: MAdNativeiOS.NativeAdStarRating?
+  @objc public var iconImage: UIKit.UIImage?
+  @objc public var mainImage: UIKit.UIImage?
+  @objc public var iconImageSize: CoreGraphics.CGSize
+  @objc public var mainImageURL: Foundation.URL?
+  @objc public var mainImageSize: CoreGraphics.CGSize
+  @objc public var iconImageURL: Foundation.URL?
+  @objc public var customElements: Foundation.NSDictionary?
+  @objc public var sponsoredBy: Swift.String
+  @objc public var adResponseInfo: MAdNativeiOS.AdResponseInfo?
+  @objc public var additionalDescription: Swift.String
+  @objc public var networkCode: MAdNativeiOS.NativeAdNetworkCode
+  @objc public var expired: Swift.Bool
+  @objc public var vastXML: Swift.String?
+  @objc public var privacyLink: Swift.String
+  @objc public var adObjectMediaType: Swift.String?
+  @objc weak public var delegate: MAdNativeiOS.NativeAdResponseDelegate?
+  @objc public func setDelegate(delegate: Swift.AnyObject)
+  @objc public var creativeId: Swift.String?
+  @objc public func removeAllFriendlyObstructions()
+  @objc public func removeFriendlyObstruction(_ friendlyObstructions: UIKit.UIView)
+  @objc public func setClickThroughAction(_ clickThroughAction: MAdNativeiOS.ClickThroughAction)
+  @objc public func registerView(forTracking view: UIKit.UIView, withRootViewController rvc: UIKit.UIViewController, clickableViews views: [UIKit.UIView], completionHandler: MAdNativeiOS.ViewRegisterCompletionHandler?)
+  @objc public func registerView(forTracking view: UIKit.UIView, withRootViewController rvc: UIKit.UIViewController, clickableViews views: [UIKit.UIView]?, openMeasurementFriendlyObstructions obstructionViews: [UIKit.UIView], completionHandler: MAdNativeiOS.ViewRegisterCompletionHandler?)
+  @objc deinit
+  @objc public func unregisterViewFromTracking()
+}
+@objc public enum MAdGender : Swift.Int, Swift.RawRepresentable {
+  case unknown
+  case male
+  case female
+  public typealias RawValue = Swift.String
+  public var rawValue: MAdNativeiOS.MAdGender.RawValue {
+    get
+  }
+  public init?(rawValue: MAdNativeiOS.MAdGender.RawValue)
+  public typealias RawValueInt = Swift.Int
+  public var rawValueInt: MAdNativeiOS.MAdGender.RawValueInt {
+    get
+  }
+}
+@objc public enum NativeAdRegisterErrorCode : Swift.Int, Swift.RawRepresentable {
+  case invalidView = 200
+  case invalidRootViewController = 201
+  case expiredResponse = 202
+  case badAdapter = 203
+  case internalError = 204
+  public typealias RawValue = Swift.Int
+  public var rawValue: MAdNativeiOS.NativeAdRegisterErrorCode.RawValue {
+    get
+  }
+  public init?(rawValue: MAdNativeiOS.NativeAdRegisterErrorCode.RawValue)
+}
+@objc public enum NativeAdNetworkCode : Swift.Int, Swift.RawRepresentable {
+  case mAd = 0
+  case custom
+  case adMob
+  case facebook
+  public typealias RawValue = Swift.String
+  public var rawValue: MAdNativeiOS.NativeAdNetworkCode.RawValue {
+    get
+  }
+  public init?(rawValue: MAdNativeiOS.NativeAdNetworkCode.RawValue)
+}
+@objc public enum AdType : Swift.Int, Swift.RawRepresentable {
+  case unknown = 0
+  case banner = 1
+  case video = 2
+  case native = 3
+  public typealias RawValue = Swift.String
+  public var rawValue: MAdNativeiOS.AdType.RawValue {
+    get
+  }
+  public init?(rawValue: MAdNativeiOS.AdType.RawValue)
+}
+@objc public enum VideoOrientation : Swift.Int, Swift.RawRepresentable {
+  case anUnknown
+  case anPortrait
+  case anLandscape
+  case anSquare
+  public typealias RawValue = Swift.String
+  public var rawValue: MAdNativeiOS.VideoOrientation.RawValue {
+    get
+  }
+  public init?(rawValue: MAdNativeiOS.VideoOrientation.RawValue)
+}
+@objc public enum AdImpressionType : Swift.Int, Swift.RawRepresentable {
+  case beginToRender
+  case viewableImpression
+  public typealias RawValue = Swift.String
+  public var rawValue: MAdNativeiOS.AdImpressionType.RawValue {
+    get
+  }
+  public init?(rawValue: MAdNativeiOS.AdImpressionType.RawValue)
+}
+@objc public enum AdContentSource : Swift.Int, Swift.RawRepresentable {
+  case csr
+  case csm
+  case rtb
+  public typealias RawValue = Swift.String
+  public var rawValue: MAdNativeiOS.AdContentSource.RawValue {
+    get
+  }
+  public init?(rawValue: MAdNativeiOS.AdContentSource.RawValue)
+}
+@objc public enum AdResponseCodeConstant : Swift.Int, Swift.RawRepresentable {
+  case defaultResponse = -1
+  case success = 0
+  case invalidRequest = 1
+  case unableToFill = 2
+  case mediatedSdkUnavailable = 3
+  case networkError = 4
+  case internalError = 5
+  case requestTooFrequent = 6
+  case badFormat = 7
+  case badUrl = 8
+  case badUrlConnection = 9
+  case nonViewResponse = 10
+  case customAdapterError = 11
+  public typealias RawValue = Swift.String
+  public var rawValue: MAdNativeiOS.AdResponseCodeConstant.RawValue {
+    get
+  }
+  public typealias RawValueInt = Swift.Int
+  public var rawValueInt: MAdNativeiOS.AdResponseCodeConstant.RawValueInt {
+    get
+  }
+  public init?(rawValue: MAdNativeiOS.AdResponseCodeConstant.RawValue)
+}
+@objc public enum AdResponseMessageConstant : Swift.Int, Swift.RawRepresentable {
+  case defaultResponse
+  case success
+  case invalidRequest
+  case unableToFill
+  case mediatedSdkUnavailable
+  case requestFailed
+  case networkError
+  case internalError
+  case requestTooFrequent
+  case badFormat
+  case badUrl
+  case badUrlConnection
+  case nonViewResponse
+  case customAdapterError
+  public typealias RawValue = Swift.String
+  public var rawValue: MAdNativeiOS.AdResponseMessageConstant.RawValue {
+    get
+  }
+  public init?(rawValue: MAdNativeiOS.AdResponseMessageConstant.RawValue)
+}
+@objc public enum ClickThroughAction : Swift.Int, Swift.RawRepresentable {
+  case clickThroughActionReturnURL = 1
+  case clickThroughActionOpenDeviceBrowser = 2
+  case clickThroughActionOpenSDKBrowser = 3
+  public typealias RawValue = Swift.String
+  public var rawValue: MAdNativeiOS.ClickThroughAction.RawValue {
+    get
+  }
+  public init?(rawValue: MAdNativeiOS.ClickThroughAction.RawValue)
+}
+@objc extension UIKit.UIView {
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func an_visibleInViewRectangle() -> CoreGraphics.CGRect
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func an_isViewable() -> Swift.Bool
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func addTapGesture()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func handleTap()
+  @objc @_Concurrency.MainActor(unsafe) dynamic public var anNativeAdResponse: MAdNativeiOS.NativeAdResponse? {
+    @objc get
+    @objc set
+  }
+}
+@objc public protocol NativeAdRequestDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func adRequest(_ request: MAdNativeiOS.NativeAdRequest, didReceive response: MAdNativeiOS.NativeAdResponse)
+  @objc func adRequest(_ request: MAdNativeiOS.NativeAdRequest, didFailToLoadWithError error: Swift.Error, with adResponseInfo: MAdNativeiOS.AdResponseInfo?)
+}
+open class Reachability {
+  required public init(reachabilityRef: SystemConfiguration.SCNetworkReachability, queueQoS: Dispatch.DispatchQoS = .default, targetQueue: Dispatch.DispatchQueue? = nil)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class NativeAdRequest : MAdNativeiOS.TagProperties {
+  @objc public var requestDelegate: MAdNativeiOS.NativeAdRequestDelegate?
+  @objc public var shouldLoadMainImage: Swift.Bool
+  @objc public var shouldLoadIconImage: Swift.Bool
+  @objc public var rendererId: Swift.Int
+  @objc override public init(placementId: Swift.Int)
+  @objc override public init(inventoryCode: Swift.String)
+  @objc public func loadAd()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc public class AdResponseCode : ObjectiveC.NSObject {
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class PrivacyManager {
+  public var disableIDFAUsage: Swift.Bool
+  public var disableIDFVUsage: Swift.Bool
+  public var doNotTrack: Swift.Bool
+  @objc deinit
+}
+public struct AdResponseEncodableObject : Swift.Codable {
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+@objc open class TagProperties : ObjectiveC.NSObject {
+  @objc public var publisherId: Swift.Int
+  @objc public var location: CoreLocation.CLLocation?
+  @objc public var age: Swift.Int
+  @objc public var gender: MAdNativeiOS.MAdGender
+  @objc public init(placementId: Swift.Int)
+  @objc public init(inventoryCode: Swift.String)
+  @objc public func addCustomKeyword(withKey key: Swift.String, value: Swift.String)
+  @objc public func removeCustomKeyword(withKey key: Swift.String)
+  @objc public func clearCustomKeywords()
+  @objc public var placementId: Swift.Int
+  @objc public var inventoryCode: Swift.String?
+  @objc public var creativeId: Swift.Int
+  @objc public var reserve: Swift.Float
+  @objc public var extInvCode: Swift.String?
+  @objc public var trafficSourceCode: Swift.String?
+  @objc public var clickThroughAction: MAdNativeiOS.ClickThroughAction
+  @objc public var landingPageLoadsInBackground: Swift.Bool
+  @objc public var shouldServePublicServiceAnnouncements: Swift.Bool
+  @objc public var adType: MAdNativeiOS.AdType {
+    get
+  }
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class AdResponseInfo : ObjectiveC.NSObject {
+  @objc public var creativeId: Swift.String?
+  @objc public var adType: MAdNativeiOS.AdType
+  @objc public var placementId: Swift.Int
+  @objc public var memberId: Swift.Int
+  @objc public var contentSource: Swift.String?
+  @objc public var networkName: Swift.String?
+  @objc public var auctionId: Swift.String?
+  @objc public var cpm: Swift.Double
+  @objc public var cpmPublisherCurrency: Swift.Double
+  @objc public var publisherCurrencyCode: Swift.String?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class GlobalProperties : ObjectiveC.NSObject {
+  @objc public class func sharedInstance() -> MAdNativeiOS.GlobalProperties
+  @objc public var memberId: Swift.Int {
+    get
+  }
+  @objc public var landingPageLoadsInBackground: Swift.Bool
+  @objc public var doNotTrack: Swift.Bool
+  @objc public var publisherUserId: Swift.String?
+  @objc public var auctionTimeout: Swift.Int
+  @objc public var geoOverrideCountryCode: Swift.String?
+  @objc public var geoOverrideZipCode: Swift.String?
+  @objc deinit
+}
+extension MAdNativeiOS.UserIdSource : Swift.Equatable {}
+extension MAdNativeiOS.UserIdSource : Swift.Hashable {}
+extension MAdNativeiOS.MAdGender : Swift.Equatable {}
+extension MAdNativeiOS.MAdGender : Swift.Hashable {}
+extension MAdNativeiOS.NativeAdRegisterErrorCode : Swift.Equatable {}
+extension MAdNativeiOS.NativeAdRegisterErrorCode : Swift.Hashable {}
+extension MAdNativeiOS.NativeAdNetworkCode : Swift.Equatable {}
+extension MAdNativeiOS.NativeAdNetworkCode : Swift.Hashable {}
+extension MAdNativeiOS.AdType : Swift.Equatable {}
+extension MAdNativeiOS.AdType : Swift.Hashable {}
+extension MAdNativeiOS.VideoOrientation : Swift.Equatable {}
+extension MAdNativeiOS.VideoOrientation : Swift.Hashable {}
+extension MAdNativeiOS.AdImpressionType : Swift.Equatable {}
+extension MAdNativeiOS.AdImpressionType : Swift.Hashable {}
+extension MAdNativeiOS.AdContentSource : Swift.Equatable {}
+extension MAdNativeiOS.AdContentSource : Swift.Hashable {}
+extension MAdNativeiOS.AdResponseCodeConstant : Swift.Equatable {}
+extension MAdNativeiOS.AdResponseCodeConstant : Swift.Hashable {}
+extension MAdNativeiOS.AdResponseMessageConstant : Swift.Equatable {}
+extension MAdNativeiOS.AdResponseMessageConstant : Swift.Hashable {}
+extension MAdNativeiOS.ClickThroughAction : Swift.Equatable {}
+extension MAdNativeiOS.ClickThroughAction : Swift.Hashable {}

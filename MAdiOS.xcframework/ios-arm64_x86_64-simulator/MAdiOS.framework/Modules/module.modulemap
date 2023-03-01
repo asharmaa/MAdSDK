@@ -1,0 +1,4 @@
+framework module MAdiOS {
+  header "MAdiOS-Swift.h"
+  requires objc
+}

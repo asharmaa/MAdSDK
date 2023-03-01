@@ -1,0 +1,4 @@
+framework module MAdNativeiOS {
+  header "MAdNativeiOS-Swift.h"
+  requires objc
+}

@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
-  s.name             = 'MAdiOS'
-  s.version          = '1.0.0'
+  s.name             = 'MAdSDK'
+  s.version          = '1.1'
   s.summary          = 'MAdiOS for iOS'
   s.license          = { :type => 'Commercial', :file => 'Licenses/MAdSDK-LICENSE.txt' }
   s.description      = 'MAdSDK display ads.'
@@ -18,6 +18,8 @@ Pod::Spec.new do |s|
   s.subspec 'MAdiOS' do |ss|
     ss.ios.deployment_target = '13.0'
     ss.ios.vendored_frameworks = 'MAdiOS.xcframework'
+    ss.ios.dependency 'MAdSDK/OMSDK_Appnexus'
+
   end
 
    s.subspec 'OMSDK_Appnexus' do |ss|

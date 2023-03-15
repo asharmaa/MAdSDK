@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MAdSDK'
-  s.version          = '1.1'
+  s.version          = '1.3'
   s.summary          = 'MAdiOS for iOS'
   s.license          = { :type => 'Commercial', :file => 'Licenses/MAdSDK-LICENSE.txt' }
   s.description      = 'MAdSDK display ads.'

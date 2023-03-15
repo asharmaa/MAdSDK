@@ -1,9 +1,9 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MAdSDK'
-  s.version          = '1.3'
+  s.version          = '1.5'
   s.summary          = 'MAdiOS for iOS'
-  s.license          = { :type => 'Commercial', :file => 'Licenses/MAdSDK-LICENSE.txt' }
+  s.license          = { :type => 'MIT', :file => 'Licenses/MAdSDK-LICENSE.txt' }
   s.description      = 'MAdSDK display ads.'
   s.homepage = 'http://developer.yahoo.com/flurry'
   s.author           = { 'MAdSDK' => 'integration@MAdSDK.com' }
@@ -17,6 +17,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'MAdiOS' do |ss|
     ss.ios.deployment_target = '13.0'
+    ss.ios.frameworks = 'Foundation', 'SystemConfiguration', 'UIKit', 'Security'
     ss.ios.vendored_frameworks = 'MAdiOS.xcframework'
     ss.ios.dependency 'MAdSDK/OMSDK_Appnexus'
 
